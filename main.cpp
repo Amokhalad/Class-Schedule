@@ -13,13 +13,13 @@ void print_schedule(vector<Professor*> schedule);
 void run(vector<vector<Professor*>>* schedules);
 
 int main() {
-	Class* Math1D = new Class("Math 1D");
-	Class* Math2A = new Class("Math 2A");
-	Class* Math2B = new Class("Math 2B");
+	Class* ClassA = new Class("Math 1D");
+	Class* ClassB = new Class("Math 2A");
+	Class* ClassC = new Class("Math 2B");
 	vector<vector<Professor*>>* schedules = new vector<vector<Professor*>>;
 
-	insert_classes(Math1D, Math2A, Math2B);
-	all_possible_schedule(Math1D, Math2A, Math2B, schedules);
+	insert_classes(ClassA, ClassB, ClassC);
+	all_possible_schedule(ClassA, ClassB, ClassC, schedules);
 	run(schedules);
 }
 void run(vector<vector<Professor*>>* schedules) {
@@ -30,7 +30,7 @@ void run(vector<vector<Professor*>>* schedules) {
 
 vector<vector<Professor*>>* max_RMP(vector<vector<Professor*>>* schedules) {
 	double RMP_sum = 0;
-	double Max_RMP = -1;
+	double Max_RMP = 0;
 	vector<vector<Professor*>>* optimal_schedules = new vector<vector<Professor*>>;
 
 	for (int i = 0; i < schedules->size(); ++i) {
@@ -125,10 +125,6 @@ void insert_classes(Class * A, Class * B, Class * C) {
 	time = "01:30 pm-03:45 pm";
 	RMP = 3;
 	A->insert(prof, days, time, RMP);
-
-	
-
-	
 
 	prof = "Jody";
 	time = "09:35 am-11:50 am";
