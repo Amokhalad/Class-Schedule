@@ -40,6 +40,14 @@ vector<vector<Professor*>>* max_RMP(vector<vector<Professor*>>* schedules) {
 		}
 		if (Max_RMP <= RMP_sum) {
 			Max_RMP = RMP_sum;
+		}
+	}
+	for (int i = 0; i < schedules->size(); ++i) {
+		RMP_sum = 0;
+		for (int j = 0; j < (*schedules)[i].size(); ++j) {
+			RMP_sum += (*schedules)[i][j]->RMP_overall;
+		}
+		if (Max_RMP == RMP_sum) {
 			optimal_schedules->push_back((*schedules)[i]);
 		}
 	}
@@ -68,12 +76,16 @@ void all_possible_schedule(Class* A, Class* B, Class* C, vector<vector<Professor
 }
 
 void print_schedules(vector<vector<Professor*>>* schedules) {
+
 	for (int i = 0; i < schedules->size(); ++i) {
+		int rmp_sum = 0;
 		cout << "Schedule " << i + 1 << ":" << endl;
 		for (int j = 0; j < (*schedules)[i].size(); ++j) {
 			cout << fixed << setprecision(2);
 			cout << (*schedules)[i][j]->class_name << ": " << (*schedules)[i][j]->name << ", " << (*schedules)[i][j]->start_time << "-" << (*schedules)[i][j]->end_time << ", " << (*schedules)[i][j]->days << endl;
+			rmp_sum += (*schedules)[i][j]->RMP_overall;
 		}
+		cout << rmp_sum << endl;
 		cout << endl;
 	}
 }
